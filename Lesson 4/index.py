@@ -7,7 +7,7 @@ names = ["Blerta", "Erosi", "Driloni", "Brikena", "Ylli"]
 for name in names:
     print(name)
 
-
+    print("hello world")
 
 ###############################
 
