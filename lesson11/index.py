@@ -34,3 +34,21 @@ teksti1 = "Hello world this is the world where we drink ashav"
 
 with open("example.txt", "w") as file:
     file.write(teksti1)
+
+file_path = "example.txt"
+file = open(file_path, "r")
+
+content = file.read()
+print(content)
+file.close()
+
+with open("example.txt", "r") as file:
+    lines = file.readLines()
+    print(lines)
+
+with open("example.txt", "r") as file:
+    line = file.readLine()
+    print(line)
+
+
+
