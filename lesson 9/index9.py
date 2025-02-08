@@ -45,18 +45,3 @@ print("battery capacity:", tesla.battery_capacity)
 tesla.charge()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
