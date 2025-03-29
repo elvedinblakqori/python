@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 import plotly.express as px
-from numpy.ma.extras import average
+
 
 st.header('Displaying DataFrames')
 
@@ -52,4 +52,23 @@ fig= px.pie(books_df, names='Genre', title='Most Liked Genre (2009 - 2022)', col
 
 st.plotly_chart(fig)
 
+st.subheader("Number of Fiction vs Non-Fiction Books Over the Years")
+size = books_df.groupby(['Year','Genre']).size().reset_index(name='Count')
+fig = px.bar(size, x='Year', y='Count', color='Genre', title='Number of Fiction vs Non-Fiction Books from 2009-2022',
+             color_discrete_sequence=px.colors.sequential.Plasma, barmode='group')
+st.plotly_chart(fig)
+
+st.header('Top 15 Authors by counts of Books Over the Years')
+top_authors = books_df['Author'].value_counts().head(15).reset_index()
+top_authors.columns = ['Author', 'Count']
+fig = px.bar(top_authors, x='Count', y='Author', orientation='h',
+             title='Top 15 Authors by Counts of Books Published',
+             labels={'Count': 'Counts of books Published', 'Author':'Author'},
+             color='Count', color_continuous_scale=px.colors.sequential.Plasma)
+st.plotly_chart(fig)
+
+st.subheader("Filter Data by Genre")
+genre_filter = st.selectbox('Select Genre', books_df['Genre'].unique())
+filter_df = books_df[books_df['Genre'] == genre_filter]
+st.write(filter_df)
 
